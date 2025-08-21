@@ -8,6 +8,6 @@ public class PersonRepository {
 
     public long count() {
         System.out.println("PersonRepository(v%d).count() 작동".formatted(version));
-        return 3;
+        return 3+version;
     }
 }
