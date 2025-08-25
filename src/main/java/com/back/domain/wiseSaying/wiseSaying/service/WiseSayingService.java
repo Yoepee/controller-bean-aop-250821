@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class WiseSayingService {
-    private WiseSayingRepository wiseSayingRepository = new WiseSayingRepository();
+    private final WiseSayingRepository wiseSayingRepository;
 
     public WiseSaying write(String content, String author){
         return wiseSayingRepository.save(new WiseSaying(content, author));
