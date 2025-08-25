@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class MarkdownService {
     private final Parser parser;
     private final HtmlRenderer renderer;
-    
+
     MarkdownService() {
         this.parser = Parser.builder().build();
         this.renderer = HtmlRenderer.builder().build();
