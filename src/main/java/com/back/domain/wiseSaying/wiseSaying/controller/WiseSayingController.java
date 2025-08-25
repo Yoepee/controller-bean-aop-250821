@@ -20,6 +20,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class WiseSayingController {
     private final WiseSayingService wiseSayingService;
+    private final Parser parser;
+    private final HtmlRenderer renderer;
+
     @GetMapping("/write")
     @ResponseBody
     public String write(String content, String author) {
@@ -85,15 +88,9 @@ public class WiseSayingController {
     public String detail(@PathVariable int id) {
         WiseSaying wiseSaying = wiseSayingService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("%d번 명언이 없습니다.".formatted(id)));
-
-        // 마크다운 생성 파서
-        Parser parser = Parser.builder().build();
         
         // 문자열 파싱해서 Node 트리 구조로 변환
         Node document = parser.parse(wiseSaying.getContent());
-
-        // HTML 랜더러 생성
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
         
         // Node를 HTML 문자열로 렌더링
         String html = renderer.render(document);

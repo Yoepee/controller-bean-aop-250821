@@ -3,6 +3,8 @@ package com.back;
 import com.back.domain.member.member.entity.Member;
 import com.back.domain.member.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +20,16 @@ public class AppConfig {
     @Lazy
     private AppConfig self;
     private final MemberService memberService;
+
+    @Bean
+    HtmlRenderer htmlRenderer() {
+        return HtmlRenderer.builder().build();
+    }
+
+    @Bean
+    Parser parser() {
+        return Parser.builder().build();
+    }
 
     @Bean
     PersonRepository personRepository() {
