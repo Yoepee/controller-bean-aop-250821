@@ -2,6 +2,7 @@ package com.back.domain.wiseSaying.wiseSaying.controller;
 
 import com.back.domain.wiseSaying.wiseSaying.entity.WiseSaying;
 import com.back.domain.wiseSaying.wiseSaying.service.WiseSayingService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +14,9 @@ import java.util.stream.Collectors;
 
 @RequestMapping("/wiseSayings")
 @Controller
+@RequiredArgsConstructor
 public class WiseSayingController {
-    WiseSayingService wiseSayingService = new WiseSayingService();
+    private final WiseSayingService wiseSayingService;
     @GetMapping("/write")
     @ResponseBody
     public String write(String content, String author) {
